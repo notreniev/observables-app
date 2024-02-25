@@ -11,8 +11,25 @@
       </thead>
       <tbody>
         <tr>
+          <td>Code:</td>
+          <td>{{ product.productCode }}</td>
+        </tr>
+
+        <tr>
           <td>Name:</td>
           <td>{{ product.productName }}</td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td>{{ product.description }}</td>
+        </tr>
+        <tr>
+          <td>Price:</td>
+          <td>{{ product.price | currency : "EUR" }}</td>
+        </tr>
+        <tr>
+          <td>Quantity in stock:</td>
+          <td>{{ product.quantityInStock }}</td>
         </tr>
       </tbody>
     </table>

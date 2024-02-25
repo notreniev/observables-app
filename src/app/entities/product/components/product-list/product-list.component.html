@@ -1,15 +1,18 @@
 <div class="products">
   <h1>{{ pageTitle }}</h1>
 
-  <ng-container *ngIf="products$ | async as products">
+  <ng-container *ngIf="vm$ | async as vm">
     <div>
       <table aria-describedby="Products table">
         <thead>
           <th></th>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products">
-            <td (click)="onSelected(product.id)">
+          <tr *ngFor="let product of vm.products">
+            <td
+              (click)="onSelected(product.id)"
+              [ngClass]="{ selected: vm.selectedProduct?.id === product.id }"
+            >
               {{ product.productName }}
             </td>
           </tr>

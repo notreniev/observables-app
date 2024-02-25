@@ -4,7 +4,6 @@ import { Product } from '../models/product.model';
 import {
   BehaviorSubject,
   Observable,
-  Subject,
   catchError,
   combineLatest,
   map,

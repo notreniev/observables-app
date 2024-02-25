@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { AsyncPipe, JsonPipe, NgIf } from '@angular/common';
+import {
+  AsyncPipe,
+  CommonModule,
+  JsonPipe,
+  NgIf,
+  getLocaleId,
+} from '@angular/common';
 import { combineLatest, filter, map } from 'rxjs';
+import { LocalizedString } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, NgIf],
+  imports: [CommonModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
 })
@@ -14,8 +21,6 @@ export class ProductDetailComponent {
   public pageTitle = 'Product Details';
 
   constructor(protected productService: ProductService) {}
-
-  // public product$ = this.productService.productSelected$;
 
   public product$ = this.productService.productSelected$.pipe(
     filter((product) => Boolean(product)),
