@@ -1,0 +1,16 @@
+.app-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  & div:nth-child(1) {
+    border-right: solid 1px #ccc;
+    min-width: 12rem;
+    height: calc(100vh - 1rem);
+  }
+
+  & div:nth-child(2) {
+    flex: 2;
+    padding: 0rem 1rem;
+  }
+}

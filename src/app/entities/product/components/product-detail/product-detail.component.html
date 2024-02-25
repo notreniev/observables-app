@@ -1,0 +1,26 @@
+<h1>{{ pageTitle }}</h1>
+
+<div
+  class="product-detail"
+  *ngIf="product$ | async as product; else noneSelected"
+>
+  <ng-container *ngIf="product">
+    <table aria-describedby="Product Table">
+      <thead>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Name:</td>
+          <td>{{ product.productName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>
+
+<ng-template #noneSelected>
+  <ng-container>
+    <div>None selected product</div>
+  </ng-container>
+</ng-template>
