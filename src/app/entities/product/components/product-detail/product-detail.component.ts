@@ -4,6 +4,7 @@ import {
   AsyncPipe,
   CommonModule,
   JsonPipe,
+  NgFor,
   NgIf,
   getLocaleId,
 } from '@angular/common';
@@ -13,7 +14,7 @@ import { LocalizedString } from '@angular/compiler';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgFor],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss',
 })

@@ -1,0 +1,19 @@
+nav {
+  background-color: #f0f0f0;
+}
+
+ul {
+  display: flex;
+  gap: 2rem;
+  padding-inline-start: 1rem;
+}
+
+li {
+  list-style-type: none;
+  padding: 1rem;
+}
+
+li:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}

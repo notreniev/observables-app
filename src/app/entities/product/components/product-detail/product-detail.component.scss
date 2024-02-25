@@ -4,15 +4,44 @@
 
   table {
     table-layout: fixed;
-  }
-
-  tbody tr td {
-    padding: 1rem;
-    border-bottom: solid 1px var(--label-column-border-color);
+    border: solid 1px var(--label-column-border-color);
   }
 
   tbody tr td:nth-child(1) {
     background-color: var(--label-column-background-color);
     text-align: end;
+    text-wrap: nowrap;
+    padding: 0rem 0.5rem;
+  }
+
+  tbody tr td:not(:nth-child(1)) {
+    padding: 1rem;
+    border-bottom: solid 1px var(--label-column-border-color);
+    width: 100%;
+  }
+
+  .actions-area {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+  }
+
+  button {
+    padding: 1rem;
+    background-color: orange;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    border: solid 1px #f7b66c;
+  }
+
+  button:hover {
+    background-color: #f68607;
+    cursor: pointer;
+  }
+
+  button:active {
+    background-color: #ffaa00;
   }
 }
