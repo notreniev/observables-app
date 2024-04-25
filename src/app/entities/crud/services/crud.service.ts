@@ -6,11 +6,11 @@ import { ItemModel } from '../models/item.model';
   providedIn: 'root',
 })
 export class CrudService {
-  private itemReadSubject$ = new BehaviorSubject<number>(0);
-  public itemReadSelected$ = this.itemReadSubject$.asObservable();
-
-  private itemDeletedSubject$ = new BehaviorSubject<number>(0);
-  public itemDeletedSelected$ = this.itemDeletedSubject$.asObservable();
+  private itemActionSubject$ = new BehaviorSubject<{
+    action: 'READ' | 'DELETE' | '';
+    value: string | number;
+  }>({ action: '', value: '' });
+  public itemActionSelected$ = this.itemActionSubject$.asObservable();
 
   constructor() {}
 
@@ -24,21 +24,19 @@ export class CrudService {
     ]);
   }
 
-  items$ = combineLatest([
-    this.getList(),
-    this.itemReadSubject$,
-    this.itemDeletedSubject$,
-  ]).pipe(
-    map(([items, itemRead, itemDeleted]) => {
-      if (itemRead) {
-        const foundRead = items.find((i) => i.id === itemRead);
+  items$ = combineLatest([this.getList(), this.itemActionSubject$]).pipe(
+    map(([items, itemActionSubject]) => {
+      if (itemActionSubject.action === 'READ') {
+        const foundRead = items.find((i) => i.id === itemActionSubject.value);
         if (foundRead) {
           foundRead.read = true;
         }
       }
 
-      if (itemDeleted) {
-        const foundDeleted = items.findIndex((i) => i.id === itemDeleted);
+      if (itemActionSubject.action === 'DELETE') {
+        const foundDeleted = items.findIndex(
+          (i) => i.id === itemActionSubject.value
+        );
         if (foundDeleted > -1) {
           items.splice(foundDeleted, 1);
         }
@@ -49,11 +47,11 @@ export class CrudService {
   );
 
   markAsRead(itemId: number): void {
-    this.itemReadSubject$.next(itemId);
+    this.itemActionSubject$.next({ action: 'READ', value: itemId });
   }
 
   markAsDeleted(itemId: number): void {
-    this.itemDeletedSubject$.next(itemId);
+    this.itemActionSubject$.next({ action: 'DELETE', value: itemId });
   }
 
   getTotalUnreads(): Observable<number> {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from './services/crud.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ItemModel } from './models/item.model';
 
@@ -14,6 +14,11 @@ import { ItemModel } from './models/item.model';
 export class CrudComponent implements OnInit {
   list$!: Observable<ItemModel[]>;
   counts$!: Observable<number>;
+
+  actionSubject$!: BehaviorSubject<{
+    action: 'READ' | 'DELETE' | undefined;
+    value: string | number;
+  }>;
 
   constructor(protected readonly crudService: CrudService) {}
 
