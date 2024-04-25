@@ -26,5 +26,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./entities/cart/cart.component').then((c) => c.CartComponent),
   },
+  {
+    path: 'crud',
+    loadComponent: () =>
+      import('./entities/crud/crud.component').then((c) => c.CrudComponent),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

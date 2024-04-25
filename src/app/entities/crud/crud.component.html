@@ -1,0 +1,16 @@
+<ng-container *ngIf="{ value: counts$ | async } as counts">
+  <div>Unreads: {{ counts.value }}</div>
+</ng-container>
+
+<ng-container *ngIf="list$ | async as list">
+  <ul>
+    <li *ngFor="let item of list">
+      {{ item.name }} - {{ item.read }}
+      <a (click)="markAsRead(item)"> Mark as read</a>-<a
+        (click)="markAsDeleted(item)"
+      >
+        Delete</a
+      >
+    </li>
+  </ul>
+</ng-container>

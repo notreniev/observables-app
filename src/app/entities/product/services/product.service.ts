@@ -7,6 +7,7 @@ import {
   catchError,
   combineLatest,
   map,
+  shareReplay,
   tap,
   throwError,
 } from 'rxjs';
@@ -34,7 +35,8 @@ export class ProductService {
     map(([products, selectedProductId]) =>
       products.find((product) => product.id === selectedProductId)
     ),
-    tap((product) => console.log('Selected product id: ', product))
+    tap((product) => console.log('Selected product id: ', product)),
+    shareReplay(1)
   );
 
   selectedProductChanged(selectedProductId: number): void {
