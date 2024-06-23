@@ -8,9 +8,15 @@ indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[src/assets/i18n/*.json]
+charset = utf-8
+indent_size = 4
+end_of_line = lf
+
 [*.ts]
 quote_type = single
 
 [*.md]
 max_line_length = off
 trim_trailing_whitespace = false
+
