@@ -24,7 +24,7 @@ export class CrudService {
     ]);
   }
 
-  items$ = combineLatest([this.getList(), this.itemActionSubject$]).pipe(
+  items$ = combineLatest([this.getList(), this.itemActionSelected$]).pipe(
     map(([items, itemActionSubject]) => {
       if (itemActionSubject.action === 'READ') {
         const foundRead = items.find((i) => i.id === itemActionSubject.value);
